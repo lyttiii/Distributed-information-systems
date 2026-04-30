@@ -1,0 +1,42 @@
+services:
+  manager:
+    build:
+      context: .
+      dockerfile: manager/Dockerfile
+    container_name: manager
+    ports:
+      - "8080:8080"
+    environment:
+      CRACKHASH_MANAGER_WORKERS: http://worker1:8081,http://worker2:8081,http://worker3:8081
+      CRACKHASH_MANAGER_REQUEST_TIMEOUT: 90s
+    depends_on:
+      - worker1
+      - worker2
+      - worker3
+
+  worker1:
+    build:
+      context: .
+      dockerfile: worker/Dockerfile
+    container_name: worker1
+    environment:
+      SERVER_PORT: 8081
+      CRACKHASH_WORKER_MANAGER_BASE_URL: http://manager:8080
+
+  worker2:
+    build:
+      context: .
+      dockerfile: worker/Dockerfile
+    container_name: worker2
+    environment:
+      SERVER_PORT: 8081
+      CRACKHASH_WORKER_MANAGER_BASE_URL: http://manager:8080
+
+  worker3:
+    build:
+      context: .
+      dockerfile: worker/Dockerfile
+    container_name: worker3
+    environment:
+      SERVER_PORT: 8081
+      CRACKHASH_WORKER_MANAGER_BASE_URL: http://manager:8080

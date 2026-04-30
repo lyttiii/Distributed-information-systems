@@ -1,0 +1,14 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: crackhash-manager
+
+crackhash:
+  manager:
+    workers:
+      - http://worker1:8081
+      - http://worker2:8081
+      - http://worker3:8081
+    request-timeout: 90s

@@ -1,0 +1,3 @@
+rootProject.name = 'crackhash'
+
+include 'contract', 'manager', 'worker'
