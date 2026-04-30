@@ -1,4 +1,4 @@
-# CrackHash System
+# CrackHashService
 
 Актуальная версия распределенной системы перебора MD5-хэша на Spring Boot.
 
