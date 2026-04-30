@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: crackhash-manager
+  data:
+    mongodb:
+      uri: ${SPRING_DATA_MONGODB_URI:mongodb://mongo1:27017,mongo2:27017,mongo3:27017/crackhash?replicaSet=rs0&w=majority}
+  rabbitmq:
+    host: ${SPRING_RABBITMQ_HOST:rabbitmq}
+    port: ${SPRING_RABBITMQ_PORT:5672}
+    username: ${SPRING_RABBITMQ_USERNAME:guest}
+    password: ${SPRING_RABBITMQ_PASSWORD:guest}
+
+crackhash:
+  manager:
+    part-count: ${CRACKHASH_MANAGER_PART_COUNT:3}
+    worker-ids: ${CRACKHASH_MANAGER_WORKER_IDS:worker1,worker2,worker3}
+    request-timeout: 90s
+    queue-retry-delay-ms: 5000
+    timeout-check-delay-ms: 2000
